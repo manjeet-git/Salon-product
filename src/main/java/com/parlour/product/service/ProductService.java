@@ -1,5 +1,7 @@
 package com.parlour.product.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,15 @@ public class ProductService {
 	public Product persistProduct(Product product) {
 		return repository.save(product);
 		
+	}
+	
+	public Product findProductById(Integer id) {
+		 Optional<Product> product=repository.findById(id);
+		 if(product.isPresent()) {
+			 return product.get();
+		 }else {
+			 return null;
+		 }
 	}
 	
 }
