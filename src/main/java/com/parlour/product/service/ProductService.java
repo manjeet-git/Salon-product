@@ -1,5 +1,6 @@
 package com.parlour.product.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,22 @@ public class ProductService {
 		 }else {
 			 return null;
 		 }
+	}
+	
+	public List<Product> showAllProduct(){
+		return repository.findAll();
+	}
+	
+	public List<Product> showProductByProductType(String type){
+		return repository.findAllByProductType(type);
+	}
+	
+	public List<Product> showProductByProductTypeAndMfgCountry(String productType, String mfgCountry){
+		return repository.findAllByProductTypeAndMfgCountry(productType, mfgCountry);
+	}
+	
+	public Integer updateProductById(String productType, Integer productId) {
+		return repository.updateProduct(productType, productId);
 	}
 	
 }
